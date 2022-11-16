@@ -1,12 +1,12 @@
 <template>
   <div class="col-3">
-    <div data-cy="card-activity" class="card rounded shadow mb-4" style="width: 15rem">
+    <div data-cy="activity-item" class="card rounded shadow mb-4" style="width: 15rem">
       <div class="card-body" @click="openDetail">
         <h5 class="card-title fw-bold" style="margin-bottom: 100px">{{ dataActivities.title }}</h5>
       </div>
       <div class="d-flex justify-content-between m-3">
         <span>{{ changeFormatDate(dataActivities.created_at) }}</span>
-        <i @click.prevent="deleteActivity(dataActivities.id)" class="fa-solid fa-trash-can" style="cursor: pointer"> </i>
+        <i data-cy="activity-item-delete-button" @click.prevent="deleteActivity(dataActivities.id)" class="fa-solid fa-trash-can" style="cursor: pointer"> </i>
       </div>
     </div>
   </div>

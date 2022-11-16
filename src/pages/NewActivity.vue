@@ -9,7 +9,7 @@
     </div>
     <div data-cy="img-add-new-item" class="mt-4">
       <div class="row justify-content-center">
-        <img src="../img/addActivity.PNG" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt="newItem" style="width: 500px" />
+        <img src="../img/activity.jpg" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt="newItem" style="width: 500px" />
       </div>
     </div>
     <!-- Modal -->

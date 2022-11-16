@@ -8,12 +8,12 @@
         {{ activity.title }}
       </h1>
       <div class="d-flex align-items-center ms-auto">
-        <select class="form-select me-3 p-2 rounded-pill" aria-label="Default select example">
-          <option selected>Filter</option>
+        <select data-cy="todo-sort-button" class="form-select me-3 p-2 rounded-pill" aria-label="Default select example">
+          <option selected>Sort</option>
           <option value="terbaru">Terbaru</option>
-          <option value="terlama">Terlama</option>
-          <option value="A-Z">A-Z</option>
-          <option value="Z-A">Z-A</option>
+          <option data-cy="sort-selection" value="terlama">Terlama</option>
+          <option data-cy="todo-sort-button" value="A-Z">A-Z</option>
+          <option data-cy="todo-sort-button" value="Z-A">Z-A</option>
           <option value="Belum Selesai">Belum Selesai</option>
         </select>
 
@@ -25,15 +25,15 @@
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div data-cy="add-new-item" class="container">
-                <form class="d-flex align-items-center justify-content-center mt-5" @submit="handelAddItem(this.$route.params.id)">
+              <div class="container">
+                <form data-cy="todo-add-button" class="d-flex align-items-center justify-content-center mt-5" @submit="handelAddItem(this.$route.params.id)">
                   <div style="width: 830px; height: 403px; background-color: #ffffff">
                     <div class="d-flex top-title my-5">
                       <h3 class="fw-bold ms-5" style="font-size: 18px">Tambah List Item</h3>
                       <span class="ms-auto me-5"><i @click.prevent="closeWindows" class="fa-solid fa-xmark" style="cursor: pointer"></i></span>
                     </div>
 
-                    <div data-cy="form-add-new-item" class="mb-5 me-5 ms-5">
+                    <div data-cy="modal-add-name-input" class="mb-5 me-5 ms-5">
                       <label for="exampleInputEmail1" class="form-label fw-bold">NAMA LIST ITEM</label>
                       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tambahkan nama list item" v-model="title" />
                     </div>
@@ -47,7 +47,7 @@
                         <option value="low">Low</option>
                         <option value="very-low">Very Low</option>
                       </select>
-                      <div class="d-grid gap-2 d-md-flex justify-content-end mt-3">
+                      <div data-cy="modal-add-save-button" class="d-grid gap-2 d-md-flex justify-content-end mt-3">
                         <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
                       </div>
                     </div>
@@ -62,7 +62,7 @@
     <div data-cy="check-box">
       <div v-if="item.length == 0" data-cy="img-add-new-item" class="mt-4">
         <div class="row justify-content-center">
-          <img src="../img/newItem.PNG" alt="newItem" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 550px" />
+          <img src="../img/item.jpg" alt="newItem" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 550px" />
         </div>
       </div>
       <ul class="list-group mb-0" v-for="dataItem in item" :key="dataItem.id">
@@ -71,7 +71,7 @@
           <span class="me-2">{{ dataItem.priority }}</span>
           <!-- <s>{{ dataItem.title }}</s> -->
           <span>{{ dataItem.title }}</span>
-          <span @click.prevent="deleteItem(dataItem.id, this.$route.params.id)" class="ms-auto" style="cursor: pointer"><i class="fa-regular fa-trash-can"></i></span>
+          <span data-cy="todo-item-delete-button" @click.prevent="deleteItem(dataItem.id, this.$route.params.id)" class="ms-auto" style="cursor: pointer"><i class="fa-regular fa-trash-can"></i></span>
         </li>
       </ul>
     </div>
