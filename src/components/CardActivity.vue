@@ -9,7 +9,7 @@
         <i data-cy="activity-item-delete-button" class="fa-solid fa-trash-can" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#deleteModal"> </i>
       </div>
       <!-- modal delete -->
-      <div class="modal" tabindex="-1" id="deleteModal">
+      <div class="modal" id="deleteModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
