@@ -11,9 +11,7 @@
     </div>
     <div class="my-4" data-cy="activity-item">
       <div class="row">
-        <!-- <div class="col-3"> -->
-        <card-activity v-for="dataActivities in activities" :key="dataActivities.id" :dataActivities="dataActivities" />
-        <!-- </div> -->
+        <card-activity data-cy="activity-item" v-for="dataActivities in activities" :key="dataActivities.id" :dataActivities="dataActivities" />
       </div>
     </div>
   </div>

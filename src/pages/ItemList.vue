@@ -17,7 +17,7 @@
           <option value="Belum Selesai">Belum Selesai</option>
         </select>
 
-        <button data-cy="item-list-add-button" class="btn btn-primary fw-bold rounded-pill px-3 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button data-cy="todo-add-button" class="btn btn-primary fw-bold rounded-pill px-3 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           <i class="fa-solid fa-plus me-2"></i>
           Tambah
         </button>
@@ -26,29 +26,29 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="container">
-                <form data-cy="todo-add-button" class="d-flex align-items-center justify-content-center mt-5" @submit="handelAddItem(this.$route.params.id)">
+                <form class="d-flex align-items-center justify-content-center mt-5" @submit="handelAddItem(this.$route.params.id)">
                   <div style="width: 830px; height: 403px; background-color: #ffffff">
                     <div class="d-flex top-title my-5">
                       <h3 class="fw-bold ms-5" style="font-size: 18px">Tambah List Item</h3>
-                      <span class="ms-auto me-5"><i @click.prevent="closeWindows" class="fa-solid fa-xmark" style="cursor: pointer"></i></span>
+                      <span class="ms-auto me-5"><i @click.prevent="closeWindows" data-bs-dismiss="modal" class="fa-solid fa-xmark" style="cursor: pointer"></i></span>
                     </div>
 
-                    <div data-cy="modal-add-name-input" class="mb-5 me-5 ms-5">
+                    <div class="mb-5 me-5 ms-5">
                       <label for="exampleInputEmail1" class="form-label fw-bold">NAMA LIST ITEM</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tambahkan nama list item" v-model="title" />
+                      <input data-cy="modal-add-name-input" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tambahkan nama list item" v-model="title" />
                     </div>
 
-                    <div data-cy="propity-add-new-item" class="mb-3 me-5 ms-5">
+                    <div class="mb-3 me-5 ms-5">
                       <span for="exampleInputEmail1" class="form-label fw-bold">PRORITY</span>
-                      <select v-model="priority" class="form-select" aria-label="Default select example">
+                      <select data-cy="modal-add-priority-dropdown" v-model="priority" class="form-select" aria-label="Default select example">
                         <option value="very-high">Very High</option>
                         <option value="high">High</option>
                         <option value="normal">Normal</option>
                         <option value="low">Low</option>
                         <option value="very-low">Very Low</option>
                       </select>
-                      <div data-cy="modal-add-save-button" class="d-grid gap-2 d-md-flex justify-content-end mt-3">
-                        <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
+                      <div class="d-grid gap-2 d-md-flex justify-content-end mt-3">
+                        <button data-cy="modal-add-save-button" type="submit" class="btn btn-primary rounded-pill">Simpan</button>
                       </div>
                     </div>
                   </div>
@@ -71,8 +71,24 @@
           <span class="me-2">{{ dataItem.priority }}</span>
           <!-- <s>{{ dataItem.title }}</s> -->
           <span>{{ dataItem.title }}</span>
-          <span data-cy="todo-item-delete-button" @click.prevent="deleteItem(dataItem.id, this.$route.params.id)" class="ms-auto" style="cursor: pointer"><i class="fa-regular fa-trash-can"></i></span>
+          <span data-cy="todo-item-delete-button" class="ms-auto" style="cursor: pointer"><i class="fa-regular fa-trash-can" data-bs-toggle="modal" data-bs-target="#deleteModal"></i></span>
         </li>
+        <!-- modal delete -->
+        <div class="modal" tabindex="-1" id="deleteModal" data-cy="todo-item-delete-button">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-center">Apakah anda yakin menghapus List Item</h5>
+              </div>
+              <h5 class="fw-bold text-center">"{{ dataItem.title }}"?</h5>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button data-cy="modal-delete-confirm-button" type="button" class="btn btn-primary" @click.prevent="deleteItem(dataItem.id, this.$route.params.id)">Hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </ul>
     </div>
   </div>
