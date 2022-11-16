@@ -19,8 +19,7 @@ export const useItemStore = defineStore("item", {
           activity_group_id: id,
         })
         .then(() => {
-          // this.getItem();
-          this.router.push({ name: "itemList" });
+          this.router.push("/item-list/" + id);
         })
         .catch((err) => {
           console.log(err);
